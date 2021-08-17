@@ -1,1 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>数当てゲーム</title>
+<script>
+//秘密の数＝１～１０００の乱数
+var himitsu = Math.floor(Math.random() * 1000) +1;  //プログラムで使用する変数を初期化
+var rireki = "";
 
+function check() {                                      // 関数check()定義の始まり
+    var display = document.getElementById("display");   //関数内で使用する編巣を初期化
+    var yosou = document.getElementById("yosou").value;
+    var message;
+
+    //秘密の数と予想数の代償を比較
+    if (yosou == himitsu) {
+        message = "正解!！";
+    } else if (yosou > himitsu) {
+        message = "はずれ～。もっと小さな数だよ。";
+    } else {
+        message = "はずれー。もっと大きな数だよ。";
+    }
+
+    //比較結果を履歴に追加し、表示
+    rireki = rireki + yosou + "←" + message + "<br>";   //変数rirekiにyosouとmessageを追加
+    display.innerHTML = rireki;                         //38行の<div>要素を表す。（12行で取得している)　rirekiを表示する
+}
+
+</script>
+</head>
+
+<body>
+    <p>数当てゲーム</p>
+    秘密の数を当ててね。（ﾋﾝﾄ：1～1000）
+<input type="number" id="yosou">
+<input type="button" value="これだ！" onclick="check()">
+<div id="display"></div>
+</body>
+</html>
